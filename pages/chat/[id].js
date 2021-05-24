@@ -1,19 +1,21 @@
-import Head from "next/head";
 import styled from "styled-components";
+import Head from "next/head";
+import Sidebar from "../../components/Sidebar";
 import ChatScreen from "../../components/ChatScreen";
-import SideBar from "../../components/SideBar";
-import { db, auth } from "../../firebase";
+import { auth, db } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import getRecipientEmail from "../../utils/getRecipientEmail";
 
 function Chat({ messages, chat }) {
+  const [user] = useAuthState(auth);
   return (
     <Container>
       <Head>
-        <title>Chat</title>
+        <title>Chat with {getRecipientEmail(chat.users, user)}</title>
       </Head>
-      <SideBar />
-
+      <Sidebar />
       <ChatContainer>
-        <ChatScreen />
+        <ChatScreen chat={chat} messages={messages} />
       </ChatContainer>
     </Container>
   );
@@ -21,10 +23,10 @@ function Chat({ messages, chat }) {
 
 export default Chat;
 
-export async function getServerSiteProps(context) {
+export const getServerSideProps = async (context) => {
   const ref = db.collection("chats").doc(context.query.id);
 
-  // prep the message on server
+  // PREP the messages on the server
   const messagesRes = await ref
     .collection("messages")
     .orderBy("timestamp", "asc")
@@ -40,7 +42,7 @@ export async function getServerSiteProps(context) {
       timestamp: messages.timestamp.toDate().getTime(),
     }));
 
-  // prep the chats
+  // PREP the chats
   const chatRes = await ref.get();
   const chat = {
     id: chatRes.id,
@@ -53,7 +55,7 @@ export async function getServerSiteProps(context) {
       chat: chat,
     },
   };
-}
+};
 
 const Container = styled.div`
   display: flex;

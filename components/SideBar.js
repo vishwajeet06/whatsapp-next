@@ -111,6 +111,7 @@ const Header = styled.div`
 
 const UserAvatar = styled(Avatar)`
   cursor: pointer;
+  border: 1px solid black;
   :hover {
     opacity: 0.8;
   }
