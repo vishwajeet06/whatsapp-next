@@ -163,12 +163,29 @@ const HeaderInformation = styled.div`
     font-size: 14px;
     color: gray;
   }
+  @media only screen and (max-width: 575px) {
+    > * {
+      margin: 5px 0;
+    }
+    h3 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 50vw;
+    }
+  }
 `;
-const HeaderIcons = styled.div``;
+const HeaderIcons = styled.div`
+  @media only screen and (max-width: 575px) {
+    > button {
+      padding: 5px;
+    }
+  }
+`;
 const MessageContainer = styled.div`
   padding: 30px;
   background-color: #e5ded8;
-  min-height: 90vh;
+  min-height: calc(100vh -156px);
 `;
 const InputContainer = styled.form`
   display: flex;
@@ -181,11 +198,17 @@ const InputContainer = styled.form`
 `;
 const Input = styled.input`
   flex: 1;
-  outline: none;
+  outline: 0;
   border: none;
   border-radius: 10px;
   padding: 20px;
   background-color: whitesmoke;
   margin-left: 15px;
   margin-right: 15px;
+  @media only screen and (max-width: 575px) {
+    width: 100%;
+    max-width: 62vw;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+  }
 `;

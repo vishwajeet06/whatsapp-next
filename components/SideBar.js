@@ -86,6 +86,10 @@ const Container = styled.div`
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+  @media only screen and (max-width: 575px) {
+    min-width: 65px;
+    flex: 0.2;
+  }
 `;
 
 const SideBarButton = styled(Button)`
@@ -101,6 +105,9 @@ const Search = styled.div`
   align-items: center;
   padding: 20px;
   border-radius: 2px;
+  @media only screen and (max-width: 575px) {
+    display: none;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -130,4 +137,8 @@ const UserAvatar = styled(Avatar)`
   }
 `;
 
-const IconsContainer = styled.div``;
+const IconsContainer = styled.div`
+  @media only screen and (max-width: 575px) {
+    display: none;
+  }
+`;
