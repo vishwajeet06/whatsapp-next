@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Head from "next/head";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/SideBar";
 import ChatScreen from "../../components/ChatScreen";
 import { auth, db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
